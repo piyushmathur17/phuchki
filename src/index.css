@@ -1,0 +1,106 @@
+.box{
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+}
+.stickyyy{
+    background-color:#ffffff;
+    color:#7cb342;
+    position: fixed;
+    z-index:9999;
+    top: 0;
+    left: 0;
+    box-shadow: 1px 1px 1px #222;
+   
+}
+.material-icons{
+    font-size: 2.4em;
+    cursor: pointer;
+}
+.card{
+    width: 300;
+    height: 350;    
+}
+.card-content{
+    padding: 50;
+
+}
+.nav-wrapp{
+    color: #008537;
+}
+.card .card-image .card-title{
+    text-align: bottom;
+    color: black;
+    font-weight: 400
+}
+
+.cart{
+    margin-top:40px;
+}
+.collection .collection-item{
+    display: flex;
+}
+.collection-item.avatar .title{
+    font-size: 20px;
+    font-weight: 500;
+    color: #008537;
+    display: block;
+    margin-bottom: 20px;
+}
+.collection .collection-item img{
+    width: 150px;
+    margin-right: 25px;
+}
+.item-desc{
+    margin-left: 5;
+    align-self:center;
+}
+.table {
+    
+    display: flex;
+    align-content: space-between;
+
+  }
+.about_us{
+    margin-left:40%;
+}
+.para{
+    margin-left: 30%;
+}
+.contact_us{
+    margin-left:40%;
+}
+.contact{
+    margin-left: -10%;
+}
+.center_image{
+    text-align: center;
+    align-items: center;
+    height: 400;
+    width: 400;
+}
+.vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    
+  }
+div p h1 h2 h3 h4 h5 h6{
+    font-size: 4vw;
+}
+button {
+    width:40%;
+    height:40%;
+    border:none;
+    background-color: #7cb342; /* Green */
+
+    color: white;
+    padding: 3px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 100%;
+  }
+  label{
+      width:20px;
+  }

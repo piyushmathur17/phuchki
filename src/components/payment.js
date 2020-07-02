@@ -50,19 +50,61 @@ export default class Payment extends Component{
                     console.log('error: ',error)
                 });
     }
-    //function used to post data to the payment gateway    
+
+    //function used to post data to the payment gateway  
+    utf8_to_str(a) {
+        for(var i=0, s=''; i<a.length; i++) {
+            var h = a[i].toString(16)
+            if(h.length < 2) h = '0' + h
+            s += '%' + h
+        }
+        return decodeURIComponent(s)
+    }  
+    bin2string(array){
+        var result = "";
+        for(var i = 0; i < array.length; ++i){
+            result+= (String.fromCharCode(array[i]));
+        }
+        return result;
+    }
     handleSubmit(){
-        let form = this.state.form // this.state.form stores pg_params from response from /v1/createOrder/
-        console.log('posting to cashfree : ',form)
-        fetch('https://test.cashfree.com/billpay/checkout/post/submit', {
-            mode:'no-cors',
+    
+        //let form = this.state.form // this.state.form stores pg_params from response from /v1/createOrder/
+        //hardcoded data
+        let form = {
+            "appId": "19124f13c8d8ddc0ae925549f42191",
+            "orderId": "f40cc84f-79fc-4483-8683-504b",
+            "orderAmount": "80.0",
+            "orderCurrency": "INR",
+            "orderNote": "Phuchki",
+            "customerName": "piyush mathur",
+            "customerPhone": "08279859792",
+            "customerEmail": "piosdshm@bjdk.cikl",
+            "returnUrl": "https://google.com",
+            "notifyUrl": "https://google.com",
+            "signature": 'V7GUowP/i3MPsDHTsNMn00xp65gLZHJNKNHeG5SrqU='
+        }
+        
+        let sign= this.bin2string(form.signature)
+        console.log('new sign', sign)
+        form['signature']=sign
+        
+        // for(var i=0;i<form.length-2;i++){
+        //     if(form[i]=='b' && form[i+1]=='\'' && !(form[i+2]==' ' || form[i+2]==',' ||form[i+2]=='}') ){form=form.substr(0,i) + form.substr(i+1);break;}
+        // }
+    
+        console.log(form)
+        //form = JSON.parse(form);
+        console.log('posting to cashfreee : ',form)
+        fetch('https://cors-anywhere.herokuapp.com/https://test.cashfree.com/billpay/checkout/post/submit', {
+            //mode:'no-cors',
             method: 'POST',
             headers: { 'content-type': 'application/x-www-form-urlencoded' },
             body: JSON.stringify(form)
           })        
-          .then((response) => response.json())
-          .then(json => console.log(json))
-          .catch(error => console.log(error));
+          .then((response) => response.json //response to be posted to /v1/processPayment/)
+          .then((json)=>console.log(json) )
+          .catch(error => console.log(error))
     }
     
     render(){
